@@ -1,0 +1,208 @@
+[
+    {
+        "model": "pastas.unidadmedida",
+        "pk": 1,
+        "fields": {
+            "nombre": "KILO"
+        }
+    },
+    {
+        "model": "pastas.unidadmedida",
+        "pk": 2,
+        "fields": {
+            "nombre": "UNIDAD"
+        }
+    },
+    {
+        "model": "pastas.ingrediente",
+        "pk": 1,
+        "fields": {
+            "nombre": "HARINA",
+            "costo": "50.00",
+            "unidad_medida": 1
+        }
+    },
+    {
+        "model": "pastas.ingrediente",
+        "pk": 2,
+        "fields": {
+            "nombre": "SAL",
+            "costo": "50.00",
+            "unidad_medida": 1
+        }
+    },
+    {
+        "model": "pastas.ingrediente",
+        "pk": 3,
+        "fields": {
+            "nombre": "HUEVO",
+            "costo": "10.00",
+            "unidad_medida": 2
+        }
+    },
+    {
+        "model": "pastas.ingrediente",
+        "pk": 4,
+        "fields": {
+            "nombre": "JAM\u00d3N",
+            "costo": "600.00",
+            "unidad_medida": 1
+        }
+    },
+    {
+        "model": "pastas.ingrediente",
+        "pk": 5,
+        "fields": {
+            "nombre": "QUESO",
+            "costo": "250.00",
+            "unidad_medida": 1
+        }
+    },
+    {
+        "model": "pastas.ingrediente",
+        "pk": 6,
+        "fields": {
+            "nombre": "ESPINACA",
+            "costo": "100.00",
+            "unidad_medida": 1
+        }
+    },
+    {
+        "model": "pastas.producto",
+        "pk": 1,
+        "fields": {
+            "nombre": "TALLARIN",
+            "ganancia": "2.00",
+            "es_relleno": false
+        }
+    },
+    {
+        "model": "pastas.producto",
+        "pk": 2,
+        "fields": {
+            "nombre": "RAVIOLI ESPINACA",
+            "ganancia": "3.00",
+            "es_relleno": true
+        }
+    },
+    {
+        "model": "pastas.producto",
+        "pk": 3,
+        "fields": {
+            "nombre": "SORRENTINO JAM\u00d3N Y QUESO",
+            "ganancia": "3.80",
+            "es_relleno": true
+        }
+    },
+    {
+        "model": "pastas.receta",
+        "pk": 1,
+        "fields": {
+            "cantidad": "0.90",
+            "ingrediente": 1,
+            "producto": 1
+        }
+    },
+    {
+        "model": "pastas.receta",
+        "pk": 2,
+        "fields": {
+            "cantidad": "0.05",
+            "ingrediente": 2,
+            "producto": 1
+        }
+    },
+    {
+        "model": "pastas.receta",
+        "pk": 3,
+        "fields": {
+            "cantidad": "4.00",
+            "ingrediente": 3,
+            "producto": 1
+        }
+    },
+    {
+        "model": "pastas.receta",
+        "pk": 4,
+        "fields": {
+            "cantidad": "0.60",
+            "ingrediente": 1,
+            "producto": 2
+        }
+    },
+    {
+        "model": "pastas.receta",
+        "pk": 5,
+        "fields": {
+            "cantidad": "4.00",
+            "ingrediente": 3,
+            "producto": 2
+        }
+    },
+    {
+        "model": "pastas.receta",
+        "pk": 6,
+        "fields": {
+            "cantidad": "0.30",
+            "ingrediente": 6,
+            "producto": 2
+        }
+    },
+    {
+        "model": "pastas.receta",
+        "pk": 7,
+        "fields": {
+            "cantidad": "0.60",
+            "ingrediente": 1,
+            "producto": 3
+        }
+    },
+    {
+        "model": "pastas.receta",
+        "pk": 8,
+        "fields": {
+            "cantidad": "4.00",
+            "ingrediente": 3,
+            "producto": 3
+        }
+    },
+    {
+        "model": "pastas.receta",
+        "pk": 9,
+        "fields": {
+            "cantidad": "0.15",
+            "ingrediente": 4,
+            "producto": 3
+        }
+    },
+    {
+        "model": "pastas.receta",
+        "pk": 10,
+        "fields": {
+            "cantidad": "0.15",
+            "ingrediente": 5,
+            "producto": 3
+        }
+    },
+    {
+        "model": "pastas.barrio",
+        "pk": 1,
+        "fields": {
+            "nombre": "centro"
+        }
+    },
+    {
+        "model": "pastas.barrio",
+        "pk": 2,
+        "fields": {
+            "nombre": "lamadrid"
+        }
+    },
+    {
+        "model": "pastas.barrio",
+        "pk": 1,
+        "fields": {
+            "nombre": "ameghino"
+        }
+    }
+]

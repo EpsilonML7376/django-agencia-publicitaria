@@ -1,0 +1,185 @@
+[
+  {
+    "model": "agencia.topicopagina",
+    "pk": 1,
+    "fields": {
+      "nombre": "TECNOLOGÍA"
+    }
+  },
+  {
+    "model": "agencia.topicopagina",
+    "pk": 2,
+    "fields": {
+      "nombre": "DEPORTES"
+    }
+  },
+  {
+    "model": "agencia.topicopagina",
+    "pk": 3,
+    "fields": {
+      "nombre": "NOTICIAS"
+    }
+  },
+  {
+    "model": "agencia.categoria",
+    "pk": 1,
+    "fields": {
+      "nombre": "BANNER"
+    }
+  },
+  {
+    "model": "agencia.categoria",
+    "pk": 2,
+    "fields": {
+      "nombre": "VIDEO"
+    }
+  },
+  {
+    "model": "agencia.categoria",
+    "pk": 3,
+    "fields": {
+      "nombre": "TEXTO"
+    }
+  },
+  {
+    "model": "agencia.tipoanuncio",
+    "pk": 1,
+    "fields": {
+      "nombre": "PROMOCIONAL"
+    }
+  },
+  {
+    "model": "agencia.tipoanuncio",
+    "pk": 2,
+    "fields": {
+      "nombre": "INFORMATIVO"
+    }
+  },
+  {
+    "model": "agencia.tipoanuncio",
+    "pk": 3,
+    "fields": {
+      "nombre": "INSTITUCIONAL"
+    }
+  },
+  {
+    "model": "agencia.campania",
+    "pk": 1,
+    "fields": {
+      "nombre": "VERANO 2024"
+    }
+  },
+  {
+    "model": "agencia.campania",
+    "pk": 2,
+    "fields": {
+      "nombre": "BLACK FRIDAY"
+    }
+  },
+  {
+    "model": "agencia.campania",
+    "pk": 3,
+    "fields": {
+      "nombre": "NAVIDAD 2024"
+    }
+  },
+  {
+    "model": "agencia.cliente",
+    "pk": 1,
+    "fields": {
+      "nombre": "Juan",
+      "apellido": "Pérez",
+      "direccion_postal": "Av. Corrientes 1234, CABA",
+      "numero_telefono": "+54 11 1234-5678",
+      "correo": "juan.perez@email.com"
+    }
+  },
+  {
+    "model": "agencia.cliente",
+    "pk": 2,
+    "fields": {
+      "nombre": "María",
+      "apellido": "González",
+      "direccion_postal": "Calle Falsa 123, Córdoba",
+      "numero_telefono": "+54 351 987-6543",
+      "correo": "maria.gonzalez@email.com"
+    }
+  },
+  {
+    "model": "agencia.cliente",
+    "pk": 3,
+    "fields": {
+      "nombre": "Carlos",
+      "apellido": "López",
+      "direccion_postal": "San Martín 456, Rosario",
+      "numero_telefono": "+54 341 555-1234",
+      "correo": "carlos.lopez@email.com"
+    }
+  },
+  {
+    "model": "agencia.paginaweb",
+    "pk": 1,
+    "fields": {
+      "url": "https://www.tecnologia.com",
+      "nombre": "Portal Tecnología",
+      "topico": 1
+    }
+  },
+  {
+    "model": "agencia.paginaweb",
+    "pk": 2,
+    "fields": {
+      "url": "https://www.deportes.com",
+      "nombre": "Mundo Deportivo",
+      "topico": 2
+    }
+  },
+  {
+    "model": "agencia.paginaweb",
+    "pk": 3,
+    "fields": {
+      "url": "https://www.noticias.com",
+      "nombre": "Noticias Diarias",
+      "topico": 3
+    }
+  },
+  {
+    "model": "agencia.anuncio",
+    "pk": 1,
+    "fields": {
+      "nombre": "Promoción Smartphones",
+      "tipo": 1,
+      "titulo": "¡Nuevos Smartphones con 50% de descuento!",
+      "contenido": "Aprovecha esta increíble oferta en los últimos modelos de smartphones. Tecnología de punta al mejor precio.",
+      "categoria": 1,
+      "precio": "1500.00",
+      "campania": 2
+    }
+  },
+  {
+    "model": "agencia.anuncio",
+    "pk": 2,
+    "fields": {
+      "nombre": "Video Deportivo",
+      "tipo": 2,
+      "titulo": "Conoce los mejores deportistas del año",
+      "contenido": "Un video informativo sobre los atletas más destacados de la temporada actual.",
+      "categoria": 2,
+      "precio": "2000.00",
+      "campania": 1
+    }
+  },
+  {
+    "model": "agencia.anuncio",
+    "pk": 3,
+    "fields": {
+      "nombre": "Mensaje Navideño",
+      "tipo": 3,
+      "titulo": "Felices Fiestas desde nuestra empresa",
+      "contenido": "Un cálido mensaje navideño para todos nuestros clientes y colaboradores.",
+      "categoria": 3,
+      "precio": "800.00",
+      "campania": 3
+    }
+  }
+]
