@@ -63,24 +63,69 @@
     }
   },
   {
+    "model": "agencia.anuncio",
+    "pk": 1,
+    "fields": {
+      "nombre": "Promoción Smartphones",
+      "tipo": 1,
+      "titulo": "¡Nuevos Smartphones con 50% de descuento!",
+      "contenido": "Aprovecha esta increíble oferta en los últimos modelos de smartphones.",
+      "categoria": 1,
+      "precio": "1500.00"
+    }
+  },
+  {
+    "model": "agencia.anuncio",
+    "pk": 2,
+    "fields": {
+      "nombre": "Video Deportivo",
+      "tipo": 2,
+      "titulo": "Conoce los mejores deportistas del año",
+      "contenido": "Video sobre los atletas más destacados.",
+      "categoria": 2,
+      "precio": "2000.00"
+    }
+  },
+  {
+    "model": "agencia.anuncio",
+    "pk": 3,
+    "fields": {
+      "nombre": "Mensaje Navideño",
+      "tipo": 3,
+      "titulo": "Felices Fiestas desde nuestra empresa",
+      "contenido": "Un cálido mensaje navideño para nuestros clientes.",
+      "categoria": 3,
+      "precio": "800.00"
+    }
+  },
+  {
     "model": "agencia.campania",
     "pk": 1,
     "fields": {
-      "nombre": "VERANO 2024"
+      "nombre": "BLACK FRIDAY",
+      "anuncio": 1,
+      "fechaInicio": "2024-11-01",
+      "fechaFin": "2024-11-30"
     }
   },
   {
     "model": "agencia.campania",
     "pk": 2,
     "fields": {
-      "nombre": "BLACK FRIDAY"
+      "nombre": "VERANO 2024",
+      "anuncio": 2,
+      "fechaInicio": "2024-12-01",
+      "fechaFin": "2025-02-28"
     }
   },
   {
     "model": "agencia.campania",
     "pk": 3,
     "fields": {
-      "nombre": "NAVIDAD 2024"
+      "nombre": "NAVIDAD 2024",
+      "anuncio": 3,
+      "fechaInicio": "2024-12-15",
+      "fechaFin": "2024-12-31"
     }
   },
   {
@@ -88,7 +133,6 @@
     "pk": 1,
     "fields": {
       "nombre": "Juan",
-      "apellido": "Pérez",
       "direccion_postal": "Av. Corrientes 1234, CABA",
       "numero_telefono": "+54 11 1234-5678",
       "correo": "juan.perez@email.com"
@@ -99,7 +143,6 @@
     "pk": 2,
     "fields": {
       "nombre": "María",
-      "apellido": "González",
       "direccion_postal": "Calle Falsa 123, Córdoba",
       "numero_telefono": "+54 351 987-6543",
       "correo": "maria.gonzalez@email.com"
@@ -110,7 +153,6 @@
     "pk": 3,
     "fields": {
       "nombre": "Carlos",
-      "apellido": "López",
       "direccion_postal": "San Martín 456, Rosario",
       "numero_telefono": "+54 341 555-1234",
       "correo": "carlos.lopez@email.com"
@@ -144,42 +186,63 @@
     }
   },
   {
-    "model": "agencia.anuncio",
+    "model": "agencia.aparicionanunciopagina",
     "pk": 1,
     "fields": {
-      "nombre": "Promoción Smartphones",
-      "tipo": 1,
-      "titulo": "¡Nuevos Smartphones con 50% de descuento!",
-      "contenido": "Aprovecha esta increíble oferta en los últimos modelos de smartphones. Tecnología de punta al mejor precio.",
-      "categoria": 1,
-      "precio": "1500.00",
-      "campania": 2
+      "anuncio": 1,
+      "pagina": 1,
+      "fechaInicioAparicion": "2024-11-01",
+      "fechaFinAparicion": "2024-11-10"
     }
   },
   {
-    "model": "agencia.anuncio",
+    "model": "agencia.aparicionanunciopagina",
     "pk": 2,
     "fields": {
-      "nombre": "Video Deportivo",
-      "tipo": 2,
-      "titulo": "Conoce los mejores deportistas del año",
-      "contenido": "Un video informativo sobre los atletas más destacados de la temporada actual.",
-      "categoria": 2,
-      "precio": "2000.00",
-      "campania": 1
+      "anuncio": 2,
+      "pagina": 2,
+      "fechaInicioAparicion": "2024-12-01",
+      "fechaFinAparicion": "2024-12-20"
     }
   },
   {
-    "model": "agencia.anuncio",
+    "model": "agencia.aparicionanunciopagina",
     "pk": 3,
     "fields": {
-      "nombre": "Mensaje Navideño",
-      "tipo": 3,
-      "titulo": "Felices Fiestas desde nuestra empresa",
-      "contenido": "Un cálido mensaje navideño para todos nuestros clientes y colaboradores.",
-      "categoria": 3,
-      "precio": "800.00",
-      "campania": 3
+      "anuncio": 3,
+      "pagina": 3,
+      "fechaInicioAparicion": "2024-12-15",
+      "fechaFinAparicion": "2024-12-31"
+    }
+  },
+  {
+    "model": "agencia.contratacionanuncio",
+    "pk": 1,
+    "fields": {
+      "cliente": 1,
+      "anuncio": 1,
+      "fechaContratacion": "2024-10-15",
+      "precio": "1500.00"
+    }
+  },
+  {
+    "model": "agencia.contratacionanuncio",
+    "pk": 2,
+    "fields": {
+      "cliente": 2,
+      "anuncio": 2,
+      "fechaContratacion": "2024-11-20",
+      "precio": "2000.00"
+    }
+  },
+  {
+    "model": "agencia.contratacionanuncio",
+    "pk": 3,
+    "fields": {
+      "cliente": 3,
+      "anuncio": 3,
+      "fechaContratacion": "2024-12-01",
+      "precio": "800.00"
     }
   }
 ]
