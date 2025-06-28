@@ -37,7 +37,7 @@ mkdir agencia
 cd agencia/
 ```
 ---
-2. Definición de Dependencias
+## 2. Definición de Dependencias
 Crea un archivo requirements.txt para listar las dependencias de Python necesarias para tu aplicación.
 
 Puedes copiar todo este bloque y pegarlo directamente en tu archivo requirements.txt.
@@ -112,6 +112,199 @@ PGUSER=${POSTGRES_USER}
 POSTGRES_PASSWORD=postgres
 LANG=es_AR.utf8
 POSTGRES_INITDB_ARGS="--locale-provider=icu --icu-locale=es-AR --auth-local=trust"
+```
+
+---
+## 5. Definición de Servicios con Docker Compose
+El archivo `docker-compose.yml` orquesta los servicios necesarios: base de datos, backend de Django y utilidades para generación y administración del proyecto.
+
+> **Puedes copiar todo este bloque y pegarlo directamente en tu archivo docker-compose.yml.**
+```yml
+services:
+  db:
+    image: postgres:alpine
+    env_file:
+      - .env.db
+    environment:
+      - POSTGRES_INITDB_ARGS=--auth-host=md5 --auth-local=trust
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready" ]
+      interval: 10s
+      timeout: 2s
+      retries: 5
+    volumes:
+      - postgres-db:/var/lib/postgresql/data
+    ports:
+      - 6432:5432
+    networks:
+      - net
+
+  backend:
+    build: .
+    command: runserver 0.0.0.0:8000
+    entrypoint: python3 manage.py
+    env_file:
+      - .env.db
+    expose:
+      - "8000"
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./src:/code
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - net
+
+  generate:
+    build: .
+    user: root
+    command: /bin/sh -c 'mkdir src && django-admin startproject app src'
+    env_file:
+      - .env.db
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - .:/code
+    networks:
+      - net
+
+  manage:
+    build: .
+    entrypoint: python3 manage.py
+    env_file:
+      - .env.db
+    volumes:
+      - ./src:/code
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - net
+
+networks:
+  net:
+
+volumes:
+  postgres-db:
+```
+
+---
+## 6. Generación y Configuración de la Aplicación
+
+### Generar la estructura base del proyecto y la app
+
+Hay que tener el archivo `LICENSE` para que la generación de a imagen no produzca un error.
+> **Puedes copiar todo este bloque y pegarlo directamente en tu terminal.**
+```sh
+docker compose run --rm generate
+docker compose run --rm manage startapp agencia
+sudo chown $USER:$USER -R .
+```
+
+### Configuración de `settings.py`
+Edita el archivo `settings.py` para agregar tu app y configurar la base de datos usando las variables de entorno.
+
+> **Puedes copiar todo este bloque y pegarlo al final directamente en tu archivo ./src/app/settings.py.**
+```python
+import os
+ALLOWED_HOSTS = [os.environ.get("ALLOWED_HOSTS", "*")]
+INSTALLED_APPS += [
+    'agencia',  # Agrega tu app aquí
+]
+# Configuración de la base de datos
+DATABASE_ENGINE = os.environ.get("DATABASE_ENGINE", "")
+POSTGRES_USER = os.getenv("POSTGRES_USER", "")
+POSTGRES_PASSWORD = os.getenv("POSTGRES_PASSWORD", "")
+POSTGRES_DB = os.environ.get("POSTGRES_DB", "") or os.getenv("DB_NAME")
+POSTGRES_HOST = os.environ.get("POSTGRES_HOST", "") or os.getenv("DB_HOST")
+POSTGRES_PORT = os.environ.get("POSTGRES_PORT", "") or os.getenv("DB_PORT")
+DATABASES = {
+    "default": {
+        "ENGINE": DATABASE_ENGINE,
+        "NAME": POSTGRES_DB,
+        "USER": POSTGRES_USER,
+        "PASSWORD": POSTGRES_PASSWORD,
+        "HOST": POSTGRES_HOST,
+        "PORT": POSTGRES_PORT,
+    }
+}
+```
+
+---
+## 7. Primeros Pasos con Django
+
+### Migrar la base de datos
+> **Puedes copiar todo este bloque y pegarlo directamente en tu terminal.**
+```sh
+docker compose run --rm manage migrate
+```
+
+### Crear un superusuario
+> **Puedes copiar todo este bloque y pegarlo directamente en tu terminal.**
+```sh
+docker compose run --rm manage createsuperuser
+```
+
+### Iniciar la aplicación
+> **Puedes copiar todo este bloque y pegarlo directamente en tu terminal.**
+```sh
+docker compose up -d backend
+```
+Accede a la administración de Django en [http://localhost:8000/admin/](http://localhost:8000/admin/)
+
+### Ver logs de los contenedores
+> **Puedes copiar todo este bloque y pegarlo directamente en tu terminal.**
+```sh
+docker compose logs -f
+```
+
+---
+## 8. Comandos Útiles
+- **Aplicar migraciones:**
+  > **Puedes copiar todo este bloque y pegarlo directamente en tu terminal.**
+  ```sh
+  docker compose run manage makemigrations
+  docker compose run manage migrate
+  ```
+- **Detener y eliminar contenedores:**
+  > **Puedes copiar todo este bloque y pegarlo directamente en tu terminal.**
+  ```sh
+  docker compose down
+  ```
+- **Detener y eliminar contenedores con imagenes y contenedores sin uso:**
+  > **Puedes copiar todo este bloque y pegarlo directamente en tu terminal.**
+  ```sh
+  docker compose down -v --remove-orphans --rmi all
+  ```
+- **Limpiar recursos de Docker:**
+  > **Puedes copiar todo este bloque y pegarlo directamente en tu terminal.**
+  ```sh
+  docker system prune -a
+  ```
+- **Cambiar permisos de archivos:**
+  > **Puedes copiar todo este bloque y pegarlo directamente en tu terminal.**
+  ```sh
+  sudo chown $USER:$USER -R .
+  ```
+
+---
+## 9. Modelado de la Aplicación
+
+### Ejemplo de `models.py`
+Incluye modelos bien documentados y estructurados para una gestión profesional de tus datos.
+
+> **Puedes copiar todo este bloque y pegarlo directamente en tu archivo ./src/pastas/models.py.**
+```python
+from django.db import models
+
+# Create your models here.
+from django.db import models
+from django.utils.translation import gettext_lazy as _
+from django.contrib.auth.models import User
+
 ```
 
 ---
