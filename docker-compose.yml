@@ -26,7 +26,7 @@ services:
       - ./initdb:/docker-entrypoint-initdb.d
     command: postgres -c shared_preload_libraries=pg_stat_statements -c pg_stat_statements.track=all -c max_connections=200
     ports:
-      - 5432:5432
+      - 6432:5432
     networks:
       - net
 
