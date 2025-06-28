@@ -41,10 +41,11 @@ cd agencia/
 Crea un archivo requirements.txt para listar las dependencias de Python necesarias para tu aplicación.
 
 Puedes copiar todo este bloque y pegarlo directamente en tu archivo requirements.txt.
-
+```txt
 # requirements.txt
 Django
 psycopg[binary]  # Driver para PostgreSQL
+```
 ---
 ## 3. Creación del Dockerfile
 El `Dockerfile` define la imagen de Docker que contendrá tu aplicación. Aquí se detallan las etapas de construcción, instalación de dependencias y configuración del entorno.
