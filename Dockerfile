@@ -1,6 +1,6 @@
 # Etapa de construcción
 FROM python:3.13-alpine AS base
-LABEL maintainer="Luciano Parruccia <parruccia@yahoo.com.ar>"
+LABEL maintainer="Santiago Wursten Gill <santiwgwuri@gmail.com>, Imanol Barrionuevo <barrionuevoimanol@gmail.com>"
 LABEL version="1.0"
 LABEL description="cloudset"
 RUN apk --no-cache add bash pango ttf-freefont py3-pip curl
