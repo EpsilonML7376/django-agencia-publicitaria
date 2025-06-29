@@ -416,7 +416,7 @@ class Anuncio(models.Model):
         verbose_name=_('Tipo'),
         help_text=_('Tipo de anuncio'),
         related_name='anuncios',
-        on_delete=models.SET_NULL,
+        on_delete=models.PROTECT,
     )
     titulo = models.CharField(
         _('Título'),
@@ -439,7 +439,7 @@ class Anuncio(models.Model):
         verbose_name=_('Categoría'),
         help_text=_('Categoría del anuncio'),
         related_name='anuncios',
-        on_delete=models.SET_NULL,
+        on_delete=models.PROTECT,
     )
     precio = models.DecimalField(
         _('Precio'),
@@ -471,7 +471,7 @@ class PaginaWeb(models.Model):
         verbose_name=_('Tópico'),
         help_text=_('Tópico de la página web'),
         related_name='paginas',
-        on_delete=models.SET_NULL,
+        on_delete=models.PROTECT,
     )
     def __str__(self):
         return self.nombre
@@ -595,7 +595,6 @@ class ContratacionAnuncio(models.Model):
         verbose_name = _('Contratación de Anuncio')
         verbose_name_plural = _('Contrataciones de Anuncios')
         ordering = ['-fecha_contratacion']
-
 ```
 
 ---
@@ -719,209 +718,431 @@ Crea la carpeta `./src/agencia/fixtures` dentro de tu app y agrega el archivo `i
 > **Puedes copiar todo este bloque y pegarlo directamente en tu archivo initial_data.json.**
 ```json
 [
-  { "model": "agencia.categoria", "pk": 1, "fields": { "nombre": "Tecnología", "descripcion": "Anuncios tech" } },
-  { "model": "agencia.categoria", "pk": 2, "fields": { "nombre": "Salud", "descripcion": "Salud y Bienestar" } },
-  { "model": "agencia.categoria", "pk": 3, "fields": { "nombre": "Deportes", "descripcion": "Anuncios deportivos" } },
-  { "model": "agencia.categoria", "pk": 4, "fields": { "nombre": "Moda", "descripcion": "Indumentaria y moda" } },
-  { "model": "agencia.categoria", "pk": 5, "fields": { "nombre": "Hogar", "descripcion": "Productos para el hogar" } },
-
-  { "model": "agencia.tipoanuncio", "pk": 1, "fields": { "nombre": "Banner", "descripcion": "Anuncio Banner" } },
-  { "model": "agencia.tipoanuncio", "pk": 2, "fields": { "nombre": "Pop-up", "descripcion": "Anuncio emergente" } },
-  { "model": "agencia.tipoanuncio", "pk": 3, "fields": { "nombre": "Video", "descripcion": "Anuncio en video" } },
-  { "model": "agencia.tipoanuncio", "pk": 4, "fields": { "nombre": "Texto", "descripcion": "Anuncio de texto" } },
-  { "model": "agencia.tipoanuncio", "pk": 5, "fields": { "nombre": "Audio", "descripcion": "Anuncio sonoro" } },
-
-  { "model": "agencia.topicopagina", "pk": 1, "fields": { "nombre": "Noticias", "descripcion": "Página de noticias" } },
-  { "model": "agencia.topicopagina", "pk": 2, "fields": { "nombre": "Deportes", "descripcion": "Página deportiva" } },
-  { "model": "agencia.topicopagina", "pk": 3, "fields": { "nombre": "Tecnología", "descripcion": "Tech y gadgets" } },
-  { "model": "agencia.topicopagina", "pk": 4, "fields": { "nombre": "Hogar", "descripcion": "Consejos para el hogar" } },
-  { "model": "agencia.topicopagina", "pk": 5, "fields": { "nombre": "Salud", "descripcion": "Bienestar y salud" } },
-
-  { "model": "agencia.paginaweb", "pk": 1, "fields": { "nombre": "TechNews", "url": "https://technews.com", "topico": 3 } },
-  { "model": "agencia.paginaweb", "pk": 2, "fields": { "nombre": "DeportesYA", "url": "https://deportesya.com", "topico": 2 } },
-  { "model": "agencia.paginaweb", "pk": 3, "fields": { "nombre": "HogarPlus", "url": "https://hogarplus.com", "topico": 4 } },
-  { "model": "agencia.paginaweb", "pk": 4, "fields": { "nombre": "SaludActiva", "url": "https://saludactiva.com", "topico": 5 } },
-  { "model": "agencia.paginaweb", "pk": 5, "fields": { "nombre": "NoticiasHoy", "url": "https://noticiashoy.com", "topico": 1 } },
-
-  { "model": "agencia.campania", "pk": 1, "fields": { "nombre": "Black Friday", "fecha_inicio": "2025-11-20T00:00:00Z", "fecha_fin": "2025-11-30T23:59:59Z" } },
-  { "model": "agencia.campania", "pk": 2, "fields": { "nombre": "Cyber Monday", "fecha_inicio": "2025-12-01T00:00:00Z", "fecha_fin": "2025-12-05T23:59:59Z" } },
-  { "model": "agencia.campania", "pk": 3, "fields": { "nombre": "Hot Sale", "fecha_inicio": "2025-10-10T00:00:00Z", "fecha_fin": "2025-10-20T23:59:59Z" } },
-  { "model": "agencia.campania", "pk": 4, "fields": { "nombre": "Navidad", "fecha_inicio": "2025-12-20T00:00:00Z", "fecha_fin": "2025-12-26T23:59:59Z" } },
-  { "model": "agencia.campania", "pk": 5, "fields": { "nombre": "Año Nuevo", "fecha_inicio": "2025-12-31T00:00:00Z", "fecha_fin": "2026-01-01T23:59:59Z" } },
-
-  { "model": "agencia.cliente", "pk": 1, "fields": { "nombre": "Juan", "apellido": "Pérez", "correo": "juan@gmail.com", "numero_telefono": "12345678" } },
-  { "model": "agencia.cliente", "pk": 2, "fields": { "nombre": "María", "apellido": "Gómez", "correo": "maria@gmail.com", "numero_telefono": "23456789" } },
-  { "model": "agencia.cliente", "pk": 3, "fields": { "nombre": "Luis", "apellido": "Martínez", "correo": "luis@gmail.com", "numero_telefono": "34567890" } },
-  { "model": "agencia.cliente", "pk": 4, "fields": { "nombre": "Ana", "apellido": "Suárez", "correo": "ana@gmail.com", "numero_telefono": "45678901" } },
-  { "model": "agencia.cliente", "pk": 5, "fields": { "nombre": "Carlos", "apellido": "López", "correo": "carlos@gmail.com", "numero_telefono": "56789012" } }
-
-  {
-    "model": "agencia.anuncio",
-    "pk": 1,
-    "fields": {
-      "nombre": "Anuncio 1",
-      "titulo": "Título 1",
-      "tipo": 1,
-      "categoria": 1,
-      "precio": "1100.00",
-      "contenido": "Contenido del anuncio 1",
-      "campania": 1
+    {
+        "model": "agencia.categoria",
+        "pk": 1,
+        "fields": {
+            "nombre": "Tecnología",
+            "descripcion": "Anuncios tech"
+        }
+    },
+    {
+        "model": "agencia.categoria",
+        "pk": 2,
+        "fields": {
+            "nombre": "Salud",
+            "descripcion": "Salud y Bienestar"
+        }
+    },
+    {
+        "model": "agencia.categoria",
+        "pk": 3,
+        "fields": {
+            "nombre": "Deportes",
+            "descripcion": "Anuncios deportivos"
+        }
+    },
+    {
+        "model": "agencia.categoria",
+        "pk": 4,
+        "fields": {
+            "nombre": "Moda",
+            "descripcion": "Indumentaria y moda"
+        }
+    },
+    {
+        "model": "agencia.categoria",
+        "pk": 5,
+        "fields": {
+            "nombre": "Hogar",
+            "descripcion": "Productos para el hogar"
+        }
+    },
+    {
+        "model": "agencia.tipoanuncio",
+        "pk": 1,
+        "fields": {
+            "nombre": "Banner",
+            "descripcion": "Anuncio Banner"
+        }
+    },
+    {
+        "model": "agencia.tipoanuncio",
+        "pk": 2,
+        "fields": {
+            "nombre": "Pop-up",
+            "descripcion": "Anuncio emergente"
+        }
+    },
+    {
+        "model": "agencia.tipoanuncio",
+        "pk": 3,
+        "fields": {
+            "nombre": "Video",
+            "descripcion": "Anuncio en video"
+        }
+    },
+    {
+        "model": "agencia.tipoanuncio",
+        "pk": 4,
+        "fields": {
+            "nombre": "Texto",
+            "descripcion": "Anuncio de texto"
+        }
+    },
+    {
+        "model": "agencia.tipoanuncio",
+        "pk": 5,
+        "fields": {
+            "nombre": "Audio",
+            "descripcion": "Anuncio sonoro"
+        }
+    },
+    {
+        "model": "agencia.topicopagina",
+        "pk": 1,
+        "fields": {
+            "nombre": "Noticias",
+            "descripcion": "Página de noticias"
+        }
+    },
+    {
+        "model": "agencia.topicopagina",
+        "pk": 2,
+        "fields": {
+            "nombre": "Deportes",
+            "descripcion": "Página deportiva"
+        }
+    },
+    {
+        "model": "agencia.topicopagina",
+        "pk": 3,
+        "fields": {
+            "nombre": "Tecnología",
+            "descripcion": "Tech y gadgets"
+        }
+    },
+    {
+        "model": "agencia.topicopagina",
+        "pk": 4,
+        "fields": {
+            "nombre": "Hogar",
+            "descripcion": "Consejos para el hogar"
+        }
+    },
+    {
+        "model": "agencia.topicopagina",
+        "pk": 5,
+        "fields": {
+            "nombre": "Salud",
+            "descripcion": "Bienestar y salud"
+        }
+    },
+    {
+        "model": "agencia.paginaweb",
+        "pk": 1,
+        "fields": {
+            "nombre": "TechNews",
+            "url": "https://technews.com",
+            "topico": 3
+        }
+    },
+    {
+        "model": "agencia.paginaweb",
+        "pk": 2,
+        "fields": {
+            "nombre": "DeportesYA",
+            "url": "https://deportesya.com",
+            "topico": 2
+        }
+    },
+    {
+        "model": "agencia.paginaweb",
+        "pk": 3,
+        "fields": {
+            "nombre": "HogarPlus",
+            "url": "https://hogarplus.com",
+            "topico": 4
+        }
+    },
+    {
+        "model": "agencia.paginaweb",
+        "pk": 4,
+        "fields": {
+            "nombre": "SaludActiva",
+            "url": "https://saludactiva.com",
+            "topico": 5
+        }
+    },
+    {
+        "model": "agencia.paginaweb",
+        "pk": 5,
+        "fields": {
+            "nombre": "NoticiasHoy",
+            "url": "https://noticiashoy.com",
+            "topico": 1
+        }
+    },
+    {
+        "model": "agencia.campania",
+        "pk": 1,
+        "fields": {
+            "nombre": "Black Friday",
+            "fecha_inicio": "2025-11-20T00:00:00Z",
+            "fecha_fin": "2025-11-30T23:59:59Z"
+        }
+    },
+    {
+        "model": "agencia.campania",
+        "pk": 2,
+        "fields": {
+            "nombre": "Cyber Monday",
+            "fecha_inicio": "2025-12-01T00:00:00Z",
+            "fecha_fin": "2025-12-05T23:59:59Z"
+        }
+    },
+    {
+        "model": "agencia.campania",
+        "pk": 3,
+        "fields": {
+            "nombre": "Hot Sale",
+            "fecha_inicio": "2025-10-10T00:00:00Z",
+            "fecha_fin": "2025-10-20T23:59:59Z"
+        }
+    },
+    {
+        "model": "agencia.campania",
+        "pk": 4,
+        "fields": {
+            "nombre": "Navidad",
+            "fecha_inicio": "2025-12-20T00:00:00Z",
+            "fecha_fin": "2025-12-26T23:59:59Z"
+        }
+    },
+    {
+        "model": "agencia.campania",
+        "pk": 5,
+        "fields": {
+            "nombre": "Año Nuevo",
+            "fecha_inicio": "2025-12-31T00:00:00Z",
+            "fecha_fin": "2026-01-01T23:59:59Z"
+        }
+    },
+    {
+        "model": "agencia.cliente",
+        "pk": 1,
+        "fields": {
+            "nombre": "Juan",
+            "apellido": "Pérez",
+            "correo": "juan@gmail.com",
+            "numero_telefono": "12345678"
+        }
+    },
+    {
+        "model": "agencia.cliente",
+        "pk": 2,
+        "fields": {
+            "nombre": "María",
+            "apellido": "Gómez",
+            "correo": "maria@gmail.com",
+            "numero_telefono": "23456789"
+        }
+    },
+    {
+        "model": "agencia.cliente",
+        "pk": 3,
+        "fields": {
+            "nombre": "Luis",
+            "apellido": "Martínez",
+            "correo": "luis@gmail.com",
+            "numero_telefono": "34567890"
+        }
+    },
+    {
+        "model": "agencia.cliente",
+        "pk": 4,
+        "fields": {
+            "nombre": "Ana",
+            "apellido": "Suárez",
+            "correo": "ana@gmail.com",
+            "numero_telefono": "45678901"
+        }
+    },
+    {
+        "model": "agencia.cliente",
+        "pk": 5,
+        "fields": {
+            "nombre": "Carlos",
+            "apellido": "López",
+            "correo": "carlos@gmail.com",
+            "numero_telefono": "56789012"
+        }
+    },
+    {
+        "model": "agencia.anuncio",
+        "pk": 1,
+        "fields": {
+            "nombre": "Anuncio 1",
+            "titulo": "Título 1",
+            "tipo": 1,
+            "categoria": 1,
+            "precio": "1100.00",
+            "contenido": "Contenido del anuncio 1",
+            "campania": 1
+        }
+    },
+    {
+        "model": "agencia.anuncio",
+        "pk": 2,
+        "fields": {
+            "nombre": "Anuncio 2",
+            "titulo": "Título 2",
+            "tipo": 2,
+            "categoria": 2,
+            "precio": "1200.00",
+            "contenido": "Contenido del anuncio 2",
+            "campania": 2
+        }
+    },
+    {
+        "model": "agencia.anuncio",
+        "pk": 3,
+        "fields": {
+            "nombre": "Anuncio 3",
+            "titulo": "Título 3",
+            "tipo": 3,
+            "categoria": 3,
+            "precio": "1300.00",
+            "contenido": "Contenido del anuncio 3",
+            "campania": 3
+        }
+    },
+    {
+        "model": "agencia.anuncio",
+        "pk": 4,
+        "fields": {
+            "nombre": "Anuncio 4",
+            "titulo": "Título 4",
+            "tipo": 4,
+            "categoria": 4,
+            "precio": "1400.00",
+            "contenido": "Contenido del anuncio 4",
+            "campania": 4
+        }
+    },
+    {
+        "model": "agencia.anuncio",
+        "pk": 5,
+        "fields": {
+            "nombre": "Anuncio 5",
+            "titulo": "Título 5",
+            "tipo": 5,
+            "categoria": 5,
+            "precio": "1500.00",
+            "contenido": "Contenido del anuncio 5",
+            "campania": 5
+        }
+    },
+    {
+        "model": "agencia.aparicionanunciopagina",
+        "pk": 1,
+        "fields": {
+            "anuncio": 1,
+            "pagina_web": 1,
+            "fecha_inicio_aparicion": "2025-06-29T12:00:00Z",
+            "fecha_fin_aparicion": "2025-07-09T12:00:00Z"
+        }
+    },
+    {
+        "model": "agencia.aparicionanunciopagina",
+        "pk": 2,
+        "fields": {
+            "anuncio": 2,
+            "pagina_web": 2,
+            "fecha_inicio_aparicion": "2025-06-30T12:00:00Z",
+            "fecha_fin_aparicion": "2025-07-10T12:00:00Z"
+        }
+    },
+    {
+        "model": "agencia.aparicionanunciopagina",
+        "pk": 3,
+        "fields": {
+            "anuncio": 3,
+            "pagina_web": 3,
+            "fecha_inicio_aparicion": "2025-07-01T12:00:00Z",
+            "fecha_fin_aparicion": "2025-07-11T12:00:00Z"
+        }
+    },
+    {
+        "model": "agencia.aparicionanunciopagina",
+        "pk": 4,
+        "fields": {
+            "anuncio": 4,
+            "pagina_web": 4,
+            "fecha_inicio_aparicion": "2025-07-02T12:00:00Z",
+            "fecha_fin_aparicion": "2025-07-12T12:00:00Z"
+        }
+    },
+    {
+        "model": "agencia.aparicionanunciopagina",
+        "pk": 5,
+        "fields": {
+            "anuncio": 5,
+            "pagina_web": 5,
+            "fecha_inicio_aparicion": "2025-07-03T12:00:00Z",
+            "fecha_fin_aparicion": "2025-07-13T12:00:00Z"
+        }
+    },
+    {
+        "model": "agencia.contratacionanuncio",
+        "pk": 1,
+        "fields": {
+            "cliente": 1,
+            "anuncio": 1,
+            "fecha_contratacion": "2025-06-29T12:00:00Z",
+            "precio": "1650.00"
+        }
+    },
+    {
+        "model": "agencia.contratacionanuncio",
+        "pk": 2,
+        "fields": {
+            "cliente": 2,
+            "anuncio": 2,
+            "fecha_contratacion": "2025-06-30T12:00:00Z",
+            "precio": "1800.00"
+        }
+    },
+    {
+        "model": "agencia.contratacionanuncio",
+        "pk": 3,
+        "fields": {
+            "cliente": 3,
+            "anuncio": 3,
+            "fecha_contratacion": "2025-07-01T12:00:00Z",
+            "precio": "1950.00"
+        }
+    },
+    {
+        "model": "agencia.contratacionanuncio",
+        "pk": 4,
+        "fields": {
+            "cliente": 4,
+            "anuncio": 4,
+            "fecha_contratacion": "2025-07-02T12:00:00Z",
+            "precio": "2100.00"
+        }
+    },
+    {
+        "model": "agencia.contratacionanuncio",
+        "pk": 5,
+        "fields": {
+            "cliente": 5,
+            "anuncio": 5,
+            "fecha_contratacion": "2025-07-03T12:00:00Z",
+            "precio": "2250.00"
+        }
     }
-  },
-  {
-    "model": "agencia.anuncio",
-    "pk": 2,
-    "fields": {
-      "nombre": "Anuncio 2",
-      "titulo": "Título 2",
-      "tipo": 2,
-      "categoria": 2,
-      "precio": "1200.00",
-      "contenido": "Contenido del anuncio 2",
-      "campania": 2
-    }
-  },
-  {
-    "model": "agencia.anuncio",
-    "pk": 3,
-    "fields": {
-      "nombre": "Anuncio 3",
-      "titulo": "Título 3",
-      "tipo": 3,
-      "categoria": 3,
-      "precio": "1300.00",
-      "contenido": "Contenido del anuncio 3",
-      "campania": 3
-    }
-  },
-  {
-    "model": "agencia.anuncio",
-    "pk": 4,
-    "fields": {
-      "nombre": "Anuncio 4",
-      "titulo": "Título 4",
-      "tipo": 4,
-      "categoria": 4,
-      "precio": "1400.00",
-      "contenido": "Contenido del anuncio 4",
-      "campania": 4
-    }
-  },
-  {
-    "model": "agencia.anuncio",
-    "pk": 5,
-    "fields": {
-      "nombre": "Anuncio 5",
-      "titulo": "Título 5",
-      "tipo": 5,
-      "categoria": 5,
-      "precio": "1500.00",
-      "contenido": "Contenido del anuncio 5",
-      "campania": 5
-    }
-  },
-
-  {
-    "model": "agencia.aparicionanunciopagina",
-    "pk": 1,
-    "fields": {
-      "anuncio": 1,
-      "pagina_web": 1,
-      "fecha_inicio_aparicion": "2025-06-29T12:00:00Z",
-      "fecha_fin_aparicion": "2025-07-09T12:00:00Z"
-    }
-  },
-  {
-    "model": "agencia.aparicionanunciopagina",
-    "pk": 2,
-    "fields": {
-      "anuncio": 2,
-      "pagina_web": 2,
-      "fecha_inicio_aparicion": "2025-06-30T12:00:00Z",
-      "fecha_fin_aparicion": "2025-07-10T12:00:00Z"
-    }
-  },
-  {
-    "model": "agencia.aparicionanunciopagina",
-    "pk": 3,
-    "fields": {
-      "anuncio": 3,
-      "pagina_web": 3,
-      "fecha_inicio_aparicion": "2025-07-01T12:00:00Z",
-      "fecha_fin_aparicion": "2025-07-11T12:00:00Z"
-    }
-  },
-  {
-    "model": "agencia.aparicionanunciopagina",
-    "pk": 4,
-    "fields": {
-      "anuncio": 4,
-      "pagina_web": 4,
-      "fecha_inicio_aparicion": "2025-07-02T12:00:00Z",
-      "fecha_fin_aparicion": "2025-07-12T12:00:00Z"
-    }
-  },
-  {
-    "model": "agencia.aparicionanunciopagina",
-    "pk": 5,
-    "fields": {
-      "anuncio": 5,
-      "pagina_web": 5,
-      "fecha_inicio_aparicion": "2025-07-03T12:00:00Z",
-      "fecha_fin_aparicion": "2025-07-13T12:00:00Z"
-    }
-  },
-
-  {
-    "model": "agencia.contratacionanuncio",
-    "pk": 1,
-    "fields": {
-      "cliente": 1,
-      "anuncio": 1,
-      "fecha_contratacion": "2025-06-29T12:00:00Z",
-      "precio": "1650.00"
-    }
-  },
-  {
-    "model": "agencia.contratacionanuncio",
-    "pk": 2,
-    "fields": {
-      "cliente": 2,
-      "anuncio": 2,
-      "fecha_contratacion": "2025-06-30T12:00:00Z",
-      "precio": "1800.00"
-    }
-  },
-  {
-    "model": "agencia.contratacionanuncio",
-    "pk": 3,
-    "fields": {
-      "cliente": 3,
-      "anuncio": 3,
-      "fecha_contratacion": "2025-07-01T12:00:00Z",
-      "precio": "1950.00"
-    }
-  },
-  {
-    "model": "agencia.contratacionanuncio",
-    "pk": 4,
-    "fields": {
-      "cliente": 4,
-      "anuncio": 4,
-      "fecha_contratacion": "2025-07-02T12:00:00Z",
-      "precio": "2100.00"
-    }
-  },
-  {
-    "model": "agencia.contratacionanuncio",
-    "pk": 5,
-    "fields": {
-      "cliente": 5,
-      "anuncio": 5,
-      "fecha_contratacion": "2025-07-03T12:00:00Z",
-      "precio": "2250.00"
-    }
-  }
 ]
 ```
 > **Puedes copiar todo este bloque y pegarlo directamente en tu terminal.**
