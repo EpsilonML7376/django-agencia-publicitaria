@@ -296,7 +296,7 @@ docker compose logs -f
 ### Ejemplo de `models.py`
 Incluye modelos bien documentados y estructurados para una gestión profesional de tus datos.
 
-> **Puedes copiar todo este bloque y pegarlo directamente en tu archivo ./src/pastas/models.py.**
+> **Puedes copiar todo este bloque y pegarlo directamente en tu archivo ./src/agencia/models.py.**
 ```python
 from django.db import models
 
@@ -604,7 +604,7 @@ class ContratacionAnuncio(models.Model):
 ### Ejemplo de `admin.py`
 Registra tus modelos para gestionarlos desde el panel de administración de Django.
 
-> **Puedes copiar todo este bloque y pegarlo directamente en tu archivo ./src/pastas/admin.py.**
+> **Puedes copiar todo este bloque y pegarlo directamente en tu archivo ./src/agencia/admin.py.**
 ```python
 from django.contrib import admin
 from agencia.models import *
@@ -715,7 +715,7 @@ docker compose run --rm manage migrate
 Accede a la administración de Django en [http://localhost:8000/admin/](http://localhost:8000/admin/) donde ya se van a ver los cambios realizados en la app, pero todavía sin datos pre cargados.
 
 ### Crear y cargar fixtures (datos iniciales)
-Crea la carpeta `./src/pastas/fixtures` dentro de tu app y agrega el archivo `initial_data.json` con los datos de ejemplo. Luego, carga los datos:
+Crea la carpeta `./src/agencia/fixtures` dentro de tu app y agrega el archivo `initial_data.json` con los datos de ejemplo. Luego, carga los datos:
 > **Puedes copiar todo este bloque y pegarlo directamente en tu archivo initial_data.json.**
 ```json
 [
