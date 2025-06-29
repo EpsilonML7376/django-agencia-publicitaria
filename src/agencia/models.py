@@ -1,4 +1,7 @@
 from django.db import models
+
+# Create your models here.
+from django.db import models
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import User
 
@@ -113,7 +116,7 @@ class Anuncio(models.Model):
         verbose_name=_('Tipo'),
         help_text=_('Tipo de anuncio'),
         related_name='anuncios',
-        on_delete=models.SET_NULL,
+        on_delete=models.PROTECT,
     )
     titulo = models.CharField(
         _('Título'),
@@ -136,7 +139,7 @@ class Anuncio(models.Model):
         verbose_name=_('Categoría'),
         help_text=_('Categoría del anuncio'),
         related_name='anuncios',
-        on_delete=models.SET_NULL,
+        on_delete=models.PROTECT,
     )
     precio = models.DecimalField(
         _('Precio'),
@@ -168,7 +171,7 @@ class PaginaWeb(models.Model):
         verbose_name=_('Tópico'),
         help_text=_('Tópico de la página web'),
         related_name='paginas',
-        on_delete=models.SET_NULL,
+        on_delete=models.PROTECT,
     )
     def __str__(self):
         return self.nombre
